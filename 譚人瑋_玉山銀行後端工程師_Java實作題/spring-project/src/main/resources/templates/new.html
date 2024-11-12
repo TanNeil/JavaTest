@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新增發文</title>
+</head>
+<body>
+    <h1>新增發文</h1>
+    <form th:action="@{/post_new}" method="post" enctype="multipart/form-data">
+        <textarea name="content" required></textarea><br>
+        <button type="submit">發佈</button>
+    </form>
+</body>
+</html>

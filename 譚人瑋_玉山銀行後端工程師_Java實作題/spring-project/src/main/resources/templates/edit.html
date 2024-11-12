@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>編輯發文</title>
+</head>
+<body>
+    <h1>編輯發文</h1>
+    <form th:action="@{'/edit/' + ${post.id}}" method="post" enctype="multipart/form-data">
+        <textarea name="content" th:text="${post.content}" required></textarea><br>
+        <button type="submit">更新</button>
+    </form>
+</body>
+</html>

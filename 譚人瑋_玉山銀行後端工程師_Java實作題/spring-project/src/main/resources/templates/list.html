@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>發文列表</title>
+</head>
+<body>
+    <h1>發文列表</h1>
+    <a th:href="@{/new}">新增發文</a>
+    <ul>
+        <li th:each="post : ${posts}">
+            <p th:text="${post.content}"></p>
+            <p>由 <span th:text="${post.user.username}">User</span>  發佈時間:<span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p>
+
+            
+            <div th:each="comment : ${post.comments}">
+                <p><strong th:text="${comment.user.username}">User</strong>: <span th:text="${comment.content}">留言內容</span></p>
+                <p>留言時間:<span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span></p> 
+            </div>
+
+            
+            <form th:action="@{/posts/{postId}/add-comment(postId=${post.id})}" method="post">
+
+                <textarea name="content" required></textarea>
+                <button type="submit">提交留言</button>
+            </form>
+            
+
+            <a th:href="@{'/edit/' + ${post.id}}">編輯</a>
+            <form th:action="@{'/delete/' + ${post.id}}" method="post" style="display:inline;">
+                <button type="submit">刪除</button>
+            </form>
+        </li>
+    </ul>
+</body>
+</html>
